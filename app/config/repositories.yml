@@ -1,0 +1,12 @@
+services:
+    user_repository:
+        class: AppBundle\Repository\UserRepository
+        factory: ["@doctrine.orm.default_entity_manager", getRepository]
+        arguments:
+            - AppBundle:User
+
+    company_repository:
+        class: AppBundle\Repository\CompanyRepository
+        factory: ["@doctrine.orm.default_entity_manager", getRepository]
+        arguments:
+            - AppBundle:Company
