@@ -48,7 +48,7 @@ class UserController extends FOSRestController
      *     resource=true
      * )
      *
-     * @FOS\QueryParam(name="email", requirements="^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.([a-zA-Z]{2,4})$", strict=true, nullable=false, allowBlank=false)
+     * @FOS\QueryParam(name="email", requirements=".+", strict=true, nullable=false, allowBlank=false)
      *
      * @FOS\Route("/users/profile", methods={"GET"})
      *

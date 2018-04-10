@@ -1,17 +1,26 @@
 BCV Symfony Candidates Test
 ===========================
 
-We work with a RESTful API on a daily basis.
-We use Symfony as our PHP development framework.
+Hi there! 
+Here at BCVSocial, we use Symfony as our PHP development framework.
 
-You will need to use all the Symfony built in tools and modules to achieve a series of tasks in the 
-more appropriate manner.
+You, as a backend team developer, will be working mainly fopr our ActiveSocial app RESTful API.
 
-- Following PHP and Symfony development best practices
-- Following REST principles and using proper methods for each endpoint
-- Meaningful and optimized responses with proper HTTP codes 
+On a daily basis you will be 
+- adding new features
+- debugging and bug fixing
+- implementing 3rd party social networks
+- improving app performance
+- writing tests
+among others.
 
-FYI: We have pre-installed in this repo many very useful and popular FOS bundles.
+On backend team we appreciate:
+
+- Following PHP and Symfony best practices
+- Following RESTFul conventions
+- coding clean and organized 
+
+For this test we have pre-installed in the repo a set of most useful and popular FOS bundles:
 
 - FOSOauthServerBundle
 - FOSRestBundle
@@ -98,34 +107,38 @@ You can see the FOSRest bundle annotaton example on UserController.php
 Follow the same pattern and use the proper restful methods for every endpoint
 ```
 
-**(2) Create the following endpoints**
--------------------------------------- 
+**(2) Create the following endpoints for**
+------------------------------------------
 
-### 2.1 - Develop an endpoint for listing Users
+### 2.1) - List app Users
 The endpoint needs to be able to filter by username.
 
-### 2.2 Develop an endpoint to replace all User fields at once
+### 2.2) - Replace some User fields at once
 The endpoint must update all fields at once.
     
-### 2.3 Develop an endpoint to create a Client
+### 2.3) - Create some Client
 Needs to validate that the company used isn't taken by other Client yet.
 
-### 2.4 Develop an endpoint to change any Client field
+### 2.4) - Change any Client field
 The endpoint should be able to change any single field at a time, many, or even all at once. 
 
 Doctrine query language
 =======================
 
-**(6) Create some repository method with some custom DQL query for the following**
+**(3) Create some repository method with some custom DQL query for the following**
 ----------------------------------------------------------------------------------
-1. List Companies filtering by 
+_You can use DQL or SQL as you like_
+
+3.1. Search for Companies by employees range. 
     - **Employees range:** _i.e. 500~2000 employees_
-2. List 
+3.2. Search for Clients by:
+    - **User: _i.e. all Clients a User belongs to**
+    - **Name: _i.e. search within the company name text occurrence**
   
 Services
 ========
 
-**(7) Create a service for sending emails with different templates** 
+**(4) Create a service for sending emails with different templates** 
 --------------------------------------------------------------------
 
 This email service needs to accept:
@@ -138,14 +151,14 @@ This service has to set, so every new user gets added a welcome email is sent.
 Security
 ========
  
-**(8) Secure the Create User endpoint(4) to allow only ROLE_ADMIN users.**
+**(5) Secure the Create User endpoint(4) to allow only ROLE_ADMIN users.**
 --------------------------------------------------------------------------
 - The use of Voters is a plus.
 
 Events
 ======
 
-**(9) Fire events when a client is created**
+**(6) Fire events when a client is created**
 ----------------------------------------------
  
 - Upon Client creation an new ClientCreationEvent should be fired.
@@ -155,10 +168,17 @@ Events
 
 Use the email service you previously created.
 
+REGEX
+=====
+
+**(7) Add some regex**
+----------------------
+- add some regex to validate emails on `GET /user/profile` endpoint.
+
 Commands
 ========
 
-**(2) Develop a symfony command**
+**(8) Develop a symfony command**
 ---------------------------------
 
 You need to create a new `symfony-test:init` that will reset all the app at once
@@ -188,8 +208,9 @@ phpunit is currently instaled for this:
 $ phpunit -c app/
 ```
 
-**(10) Pick at least 3 tests from the list below and assert ...**
------------------------------------------------------------------
+**(9) Pick at least 3 tests from the list below and assert ...**
+----------------------------------------------------------------
+_You can add what ever test you want indeed, just show us your testing skills_
 
 1. There is only 1 company with more than 200000 employees.
 2. A ROLE_USER user can NOT create a User
@@ -206,5 +227,6 @@ Writing meaningful and easy to understand docs is another skill of every great d
 You have currently installed **NelmioApiDocBundle** for that matter so you can start 
 using the ApiDocs right now. 
 
-**(13) Show us your skills writing some docs on the endpoints you have created.**
----------------------------------------------------------------------------------
+**(10) Show us your documenting skills.**
+----------------------------------------
+Writing some docs on all the endpoints you have created. 
