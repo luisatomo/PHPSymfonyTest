@@ -78,7 +78,7 @@ The app entities main structure consist in
 ----------------------------------------------------------------
 
 **1.1 _Client entity_**
-Every Client need these fields
+<br>Every Client need these fields
 - name
 - User (relational User field)
 - Company (relational Company field)
@@ -86,13 +86,13 @@ Every Client need these fields
 - phone (only numbers accepted)
     
 **1.2 _ClientUsers entity_**
-You need to create this relational entity from scratch. 
+<br>You need to create this relational entity from scratch. 
 This will relate clients with users.
 - client
 - users
 
 **1.3 _Company entity_**
-You need to add this fields to the actual entity
+<br>You need to add this fields to the actual entity
 - A related Company
 - An inverse side relationship named `users` for retrieving all the **Users** for the company.
           
@@ -127,13 +127,16 @@ Doctrine query language
 
 **(3) Create some repository method with some custom DQL query for the following**
 ----------------------------------------------------------------------------------
-_You can use DQL or SQL as you like_
+```
+You can use DQL or SQL as you like
+```
 
-3.1. Search for Companies by employees range. 
-    - **Employees range:** _i.e. 500~2000 employees_
-3.2. Search for Clients by:
-    - **User: _i.e. all Clients a User belongs to**
-    - **Name: _i.e. search within the company name text occurrence**
+3.1. Search for Companies by employees range.<br> 
+  - **Employees range:** _i.e. list Companies that has employees range between 500 and 2000_
+    
+3.2. Search for Clients by:<br>
+  - **User: i.e.** _retrieve all Clients a User belongs to_
+  - **Name: i.e.** _search within the company's name text_
   
 Services
 ========
@@ -161,8 +164,8 @@ Events
 **(6) Fire events when a client is created**
 ----------------------------------------------
  
-- Upon Client creation an new ClientCreationEvent should be fired.
-- Need to create an event listener or subscriber for that event that should send 2 emails:
+1. Upon any Client creation, a ClientCreationEvent event should be fired.
+2. An event listener/subscriber must detect that event and send 2 emails:
     - One to the user that created the Client
     - Another to the Company associated
 
@@ -183,7 +186,7 @@ Commands
 
 You need to create a new `symfony-test:init` that will reset all the app at once
 
-In short, you need to develop a command that has to execute other current built-in/existing doctrine ones, like:
+In short, you need to develop a command that has to execute other current built-in/existing doctrine commands, like:
 - doctrine:database
 - doctrine:generate
 - doctrine:mapping
@@ -192,7 +195,7 @@ In short, you need to develop a command that has to execute other current built-
 - doctrine:query
 - doctrine:migrations
 
-Pick the right commands to achieve the following:
+Pick the right commands fom above to achieve the following:
 1. drop database
 2. create new database from scratch
 3. load your current entities schema into the DB
