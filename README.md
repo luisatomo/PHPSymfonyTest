@@ -4,9 +4,9 @@ BCV Symfony Candidates Test
 Hi there! 
 Here at BCVSocial, we use Symfony as our PHP development framework.
 
-You, as a backend team developer, will be working mainly fopr our ActiveSocial app RESTful API.
+You, as a backend team developer, will be working mainly for our ActiveSocial app RESTful API.
 
-On a daily basis you will be 
+**On a daily basis you will be** 
 - adding new features
 - debugging and bug fixing
 - implementing 3rd party social networks
@@ -14,7 +14,7 @@ On a daily basis you will be
 - writing tests
 among others.
 
-On backend team we appreciate:
+**On backend team we appreciate:**
 
 - Following PHP and Symfony best practices
 - Following RESTFul conventions
