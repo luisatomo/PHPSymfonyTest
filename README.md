@@ -36,7 +36,7 @@ Services, Traits, Helpers, Mailers, Templates ...
 Building an API
 ===============
 
-This test is about to create a simple API that will work with Users, Clients and Companies.
+This test is about to create a simple API that will work with **Users**, **Clients** and **Companies**.
 
 On this repository we have a base PHP and Symfony 2.x scaffolding project, with some already 
 developed files on it.
@@ -65,11 +65,10 @@ The app entities main structure consist in
 - Companies
 - Clients
 
+**(1) Creating new or tweak the existing entities like follows**
+----------------------------------------------------------------
 
-**(1) Your first task consist in creating/tweaking some entities**
------------------------------------------------------------------
-
-**_Client entity_**
+**1.1 _Client entity_**
 Every Client need these fields
 - name
 - User (relational User field)
@@ -77,13 +76,13 @@ Every Client need these fields
 - email (only valid emails accepted)
 - phone (only numbers accepted)
     
-**_ClientUsers entity_**
+**1.2 _ClientUsers entity_**
 You need to create this relational entity from scratch. 
 This will relate clients with users.
 - client
 - users
 
-**_Company entity_**
+**1.3 _Company entity_**
 You need to add this fields to the actual entity
 - A related Company
 - An inverse side relationship named `users` for retrieving all the **Users** for the company.
@@ -103,20 +102,16 @@ Follow the same pattern and use the proper restful methods for every endpoint
 -------------------------------------- 
 
 **2.1 - Develop an endpoint for listing Users**
-
-The endpoint needs to be able to filter by username.
+- The endpoint needs to be able to filter by username.
 
 **2.2 Develop an endpoint to replace all User fields at once**
-
-The endpoint must update all fields at once.
+- The endpoint must update all fields at once.
     
 **2.3 Develop an endpoint to create a Client**
-
-Needs to validate that the company used isn't taken by other Client yet.
+- Needs to validate that the company used isn't taken by other Client yet.
 
 **2.4 Develop an endpoint to change any Client field**
-
-The endpoint should be able to change any single field at a time, many, or even all at once. 
+- The endpoint should be able to change any single field at a time, many, or even all at once. 
 
 Doctrine query language
 =======================
