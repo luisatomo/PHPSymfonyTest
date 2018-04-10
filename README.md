@@ -213,13 +213,15 @@ $ phpunit -c app/
 
 **(9) Pick at least 3 tests from the list below and assert ...**
 ----------------------------------------------------------------
-_You can add what ever test you want indeed, just show us your testing skills_
-
 1. There is only 1 company with more than 200000 employees.
 2. A ROLE_USER user can NOT create a User
 3. A Client can be created properly 
 4. A Company without a proper contact email can't be created
-5. A Company without employees can't be created 
+5. A Company without employees can't be created
+ 
+```
+You can add what ever test you want indeed, just show us your testing skills
+```
 
 Documenting
 ===========
