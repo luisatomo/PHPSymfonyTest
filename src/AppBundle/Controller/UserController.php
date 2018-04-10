@@ -1,6 +1,5 @@
 <?php
 
-
 namespace AppBundle\Controller;
 
 use AppBundle\AppBundle;
@@ -19,15 +18,17 @@ use FOS\RestBundle\Controller\Annotations\QueryParam;
 
 /**
  * Class UserController
- *
- *
- * @FOS\Prefix("/user")
- * @FOS\NamePrefix("user_")
  */
 class UserController extends FOSRestController
 {
     /**
-     * Get user profile info.
+     * ---------------------------------------
+     * -- MAKE ALL THE CHANGES YOU SEE FIT. --
+     * ---------------------------------------
+     */
+
+    /**
+     * Gets an user profile through it's email.
      *
      * ### Response ###
      *  <code>
@@ -47,16 +48,80 @@ class UserController extends FOSRestController
      *     resource=true
      * )
      *
-     * @FOS\Route("/profile")
-     * @FOS\View(serializerGroups={
-     *     "profileFields"
-     * })
+     * @FOS\QueryParam(name="email", requirements="^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.([a-zA-Z]{2,4})$", strict=true, nullable=false, allowBlank=false)
      *
-     * @return array
+     * @FOS\Route("/users/profile", methods={"GET"})
+     *
+     * @FOS\View(serializerGroups={"Users"})
+     *
+     * @return User
      */
-    public function getAction(ParamFetcher $paramFetcher)
+    public function getProfileAction(ParamFetcher $paramFetcher)
     {
-        return $this->getUser();
+        return $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(['email' => $paramFetcher->get('email')]);
     }
 
+    /**
+     * Update a User
+     *
+     * ### Response ###
+     *  <code>
+     *       "user": {
+     *         "id": ##,
+     *         "email": string,
+     *         "username": string,
+     *         "firstname": string,
+     *         "lastname": string,
+     *       }
+     * </code>
+     *
+     * @ApiDoc(
+     *     section = "User",
+     *     description="Update an user profile info.",
+     *     statusCodes={200 = "OK", 400 = "Bad request"},
+     *     resource=true
+     * )
+     *
+     * @FOS\Route("/{id}", requirements={"id"="\d+"} methods={"PATCH"}, name="update_patch")
+     *
+     * @FOS\View(serializerGroups={"Users"})
+     *
+     * @return User
+     */
+    public function patchAction(ParamFetcher $paramFetcher)
+    {
+        return new User();
+    }
+
+    /**
+     * Update a User
+     *
+     * ### Response ###
+     *  <code>
+     *       "user": {
+     *         "id": ##,
+     *         "email": string,
+     *         "username": string,
+     *         "firstname": string,
+     *         "lastname": string,
+     *       }
+     * </code>
+     *
+     * @ApiDoc(
+     *     section = "User",
+     *     description="Update an user profile info.",
+     *     statusCodes={200 = "OK", 400 = "Bad request"},
+     *     resource=true
+     * )
+     *
+     * @FOS\Route("/{id}", requirements={"id"="\d+"} methods={"PUT"}, name="update_put")
+     *
+     * @FOS\View(serializerGroups={"Users"})
+     *
+     * @return User
+     */
+    public function pitAction(ParamFetcher $paramFetcher)
+    {
+        return new User();
+    }
 }

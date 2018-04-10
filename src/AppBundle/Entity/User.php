@@ -19,35 +19,35 @@ class User extends BaseUser
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      * @Serializer\Expose()
-     * @Serializer\Groups({"profileFields"})
+     * @Serializer\Groups({"Users"})
      */
     protected $id;
 
     /**
      * @var string
      * @Serializer\Expose()
-     * @Serializer\Groups({"profileFields"})
+     * @Serializer\Groups({"Users"})
      */
     protected $email;
 
     /**
      * @var string
      * @Serializer\Expose()
-     * @Serializer\Groups({"profileFields"})
+     * @Serializer\Groups({"Users"})
      */
     protected $username;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      * @Serializer\Expose()
-     * @Serializer\Groups({"profileFields"})
+     * @Serializer\Groups({"Users"})
      */
     protected $firstName;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      * @Serializer\Expose()
-     * @Serializer\Groups({"profileFields"})
+     * @Serializer\Groups({"Users"})
      */
     protected $lastName;
 
