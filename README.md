@@ -101,17 +101,17 @@ Follow the same pattern and use the proper restful methods for every endpoint
 **(2) Create the following endpoints**
 -------------------------------------- 
 
-**2.1 - Develop an endpoint for listing Users**
-- The endpoint needs to be able to filter by username.
+### 2.1 - Develop an endpoint for listing Users
+The endpoint needs to be able to filter by username.
 
-**2.2 Develop an endpoint to replace all User fields at once**
-- The endpoint must update all fields at once.
+### 2.2 Develop an endpoint to replace all User fields at once
+The endpoint must update all fields at once.
     
-**2.3 Develop an endpoint to create a Client**
-- Needs to validate that the company used isn't taken by other Client yet.
+### 2.3 Develop an endpoint to create a Client
+Needs to validate that the company used isn't taken by other Client yet.
 
-**2.4 Develop an endpoint to change any Client field**
-- The endpoint should be able to change any single field at a time, many, or even all at once. 
+### 2.4 Develop an endpoint to change any Client field
+The endpoint should be able to change any single field at a time, many, or even all at once. 
 
 Doctrine query language
 =======================
