@@ -120,7 +120,7 @@ class UserController extends FOSRestController
      *
      * @return User
      */
-    public function pitAction(ParamFetcher $paramFetcher)
+    public function putAction(ParamFetcher $paramFetcher)
     {
         return new User();
     }
