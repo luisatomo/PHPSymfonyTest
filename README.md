@@ -47,12 +47,15 @@ Building an API
 
 This test is about to create a simple API that will work with **Users**, **Clients** and **Companies**.
 
-On this repository we have a base PHP and Symfony 2.x scaffolding project, with some already 
-developed files on it.
-
+On this repository we have a base PHP and Symfony 3.4 scaffolding project, with some already 
+developed files on it. 
 You'll need to **use, add or tweak any of the existing endpoints and classes** on this project 
-to get all the test tasks done. 
+to get all the test tasks done.
 
+
+Project contains Docker configuration so you can easily run API.
+Simply run `docker-compose up` and you are done.
+Nginx will be available on `localhost:80` and PostgreSQL on `localhost:5432`. 
 
 How to deliver your work?
 =========================
@@ -137,7 +140,10 @@ You can use DQL or SQL as you like
 3.2. Search for Clients by:<br>
   - **User: i.e.** _retrieve all Clients a User belongs to_
   - **Name: i.e.** _search within the company's name text_
-  
+
+3.2. Using one raw SQL:<br>
+  - get a list of companies where each company has maximum revenue in its industry: e.g. `Amazon` for `E-icommerce`
+
 Services
 ========
 

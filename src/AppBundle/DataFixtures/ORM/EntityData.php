@@ -30,7 +30,7 @@ class EntityData extends AbstractFixture implements OrderedFixtureInterface, Con
      */
     public function load(ObjectManager $manager)
     {
-        $files          = Finder::create()->in(__DIR__ .DIRECTORY_SEPARATOR. 'SQL')->name('*.sql');
+        $files = Finder::create()->in(dirname(__DIR__) . DIRECTORY_SEPARATOR . 'SQL')->name('*.sql');
         $em             = $this->container->get('doctrine.orm.entity_manager');
         $connection     = $em->getConnection();
 
