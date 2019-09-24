@@ -90,9 +90,13 @@ The app entities main structure consist in
     
 **1.2 _ClientUsers entity_**
 <br>You need to create this relational entity from scratch. 
-This will relate clients with users.
+This will relate client with users and contains more properties.
 - client
 - users
+- createdAt
+- updatedAt
+- deletedAt
+- active
 
 **1.3 _Company entity_**
 <br>You need to add this fields to the actual entity
@@ -128,7 +132,7 @@ The endpoint should be able to change any single field at a time, many, or even 
 Doctrine query language
 =======================
 
-**(3) Create some repository method with some custom DQL query for the following**
+**(3) Create some repository method with some custom query for the following**
 ----------------------------------------------------------------------------------
 ```
 You can use DQL or SQL as you like
@@ -141,8 +145,8 @@ You can use DQL or SQL as you like
   - **User: i.e.** _retrieve all Clients a User belongs to_
   - **Name: i.e.** _search within the company's name text_
 
-3.2. Using one raw SQL:<br>
-  - get a list of companies where each company has maximum revenue in its industry: e.g. `Amazon` for `E-icommerce`
+3.3. Using one raw SQL:<br>
+  - get a list of companies where each company has max revenue in its industry: e.g. `Amazon` for `E-icommerce`
 
 Services
 ========
@@ -184,10 +188,18 @@ REGEX
 ----------------------
 - add some regex to validate emails on `GET /user/profile` endpoint.
 
+DOCKER
+=====
+
+**(8) Improve docker implementation**
+----------------------
+- Currently, in our `docker-compose.yml` commands are executed without checking is Postgres service available.
+Using [wait-for-it](https://github.com/vishnubob/wait-for-it) bash script run commands only if the Postgres service is accessible. 
+
 Commands
 ========
 
-**(8) Develop a symfony command**
+**(9) Develop a symfony command**
 ---------------------------------
 
 You need to create a new `symfony-test:init` that will reset all the app at once
@@ -217,17 +229,12 @@ phpunit is currently instaled for this:
 $ phpunit -c app/
 ```
 
-**(9) Pick at least 3 tests from the list below and assert ...**
+**(10) Assert tests from the list below**
 ----------------------------------------------------------------
 1. There is only 1 company with more than 200000 employees.
 2. A ROLE_USER user can NOT create a User
 3. A Client can be created properly 
-4. A Company without a proper contact email can't be created
-5. A Company without employees can't be created
- 
-```
-You can add what ever test you want indeed, just show us your testing skills
-```
+4. Assert that result from (3.3) contains `Amazon` and `Google` and not contains any other company from `E-Commerce` industry
 
 Documenting
 ===========
@@ -238,6 +245,6 @@ Writing meaningful and easy to understand docs is another skill of every great d
 You have currently installed **NelmioApiDocBundle** for that matter so you can start 
 using the ApiDocs right now. 
 
-**(10) Show us your documenting skills.**
+**(11) Show us your documenting skills.**
 ----------------------------------------
 Writing some docs on all the endpoints you have created. 
