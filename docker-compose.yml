@@ -23,9 +23,9 @@ services:
     command: |
       /bin/bash -c "
         composer install  --prefer-dist --no-interaction
-        php app/console d:s:u --force
-        php app/console d:f:l -n
-        php app/console f:l -n --append
+        php app/console doctrine:schema:update --force
+        php app/console doctrine:fixtures:load -n
+        php app/console fixtures:load -n --append
         php-fpm
       "
   db:

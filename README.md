@@ -188,18 +188,10 @@ REGEX
 ----------------------
 - add some regex to validate emails on `GET /user/profile` endpoint.
 
-DOCKER
-=====
-
-**(8) Improve docker implementation**
-----------------------
-- Currently, in our `docker-compose.yml` commands are executed without checking is Postgres service available.
-Using [wait-for-it](https://github.com/vishnubob/wait-for-it) bash script run commands only if the Postgres service is accessible. 
-
 Commands
 ========
 
-**(9) Develop a symfony command**
+**(8) Develop a symfony command**
 ---------------------------------
 
 You need to create a new `symfony-test:init` that will reset all the app at once
@@ -229,12 +221,20 @@ phpunit is currently instaled for this:
 $ phpunit -c app/
 ```
 
-**(10) Assert tests from the list below**
+**(9) Assert tests from the list below**
 ----------------------------------------------------------------
 1. There is only 1 company with more than 200000 employees.
 2. A ROLE_USER user can NOT create a User
 3. A Client can be created properly 
 4. Assert that result from (3.3) contains `Amazon` and `Google` and not contains any other company from `E-Commerce` industry
+
+DOCKER
+=====
+
+**(10) Improve docker implementation**
+----------------------
+- Currently, in our `docker-compose.yml` commands are executed without checking is Postgres service available.
+Using [wait-for-it](https://github.com/vishnubob/wait-for-it) bash script run commands only if the Postgres service is accessible. 
 
 Documenting
 ===========
