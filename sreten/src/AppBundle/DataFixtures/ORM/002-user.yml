@@ -1,0 +1,18 @@
+AppBundle\Entity\User:
+    admin{1..2}:
+        username: admin<current()>
+        firstname: first<current()>
+        lastname: last<current()>
+        plainPassword: admin<current()>
+        email: admin<current()>@symfony-test.com
+        roles: [ROLE_ADMIN]
+        enabled: true
+
+    user{3..4}:
+        username: user<current()>
+        firstname: first<current()>
+        lastname: last<current()>
+        plainPassword: user<current()>
+        email: user<current()>@symfony-test.com
+        roles: [ROLE_USER]
+        enabled: true

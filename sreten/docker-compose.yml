@@ -1,0 +1,39 @@
+version: '3'
+services:
+  web:
+    image: nginx
+    volumes:
+      - ./.docker/conf/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - .:/var/www/html
+    ports:
+      - 80:80
+    restart: always
+    depends_on:
+      - php
+      - db
+  php:
+    build:
+      dockerfile: .docker/Dockerfile
+      context: .
+    restart: always
+    depends_on:
+      - db
+    volumes:
+      - .:/var/www/html
+    command: |
+      /bin/bash -c "
+        composer install  --prefer-dist --no-interaction
+        php app/console doctrine:schema:update --force
+        php app/console doctrine:fixtures:load -n
+        php app/console fixtures:load -n --append
+        php-fpm
+      "
+  db:
+    image: postgres:10.1
+    restart: always
+    environment:
+      - POSTGRES_DB=POSTGRES_DB
+      - POSTGRES_USER=POSTGRES_USER
+      - POSTGRES_PASSWORD=POSTGRES_PASSWORD
+    ports:
+      - 5432:5432
