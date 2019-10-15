@@ -1,7 +1,0 @@
-AppBundle\Entity\OAuth\Client:
-    oauth-fixture-client:
-        title: test
-        redirectUris: []
-        allowedGrantTypes: ['password']
-        randomId: 5rll3ugxh3gosko88sskskooo0ws8kggkgo4kkckgwgw0c8kco
-        secret: 439yxyh5maww48cosw0gwwo4gow0w4s4g4oosog4sww40os08c
