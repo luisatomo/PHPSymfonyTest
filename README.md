@@ -135,17 +135,19 @@ Doctrine query language
 **(3) Create some repository method with some custom query for the following**
 ----------------------------------------------------------------------------------
 ```
-You can use DQL or SQL as you like
+You have to use DQL or SQL (2 each)
 ```
 
 3.1. Search for Companies by employees range.<br> 
-  - **Employees range:** _i.e. list Companies that has employees range between 500 and 2000_
+  - **Employees range** _i.e. list Companies that has employees range between 500 and 2000_
     
 3.2. Search for Clients by:<br>
-  - **User: i.e.** _retrieve all Clients a User belongs to_
-  - **Name: i.e.** _search within the company's name text_
+  - **User email** _i.e. retrieve all Clients by a  given User email_
+  
+3.3. Search for Companies by:<br>
+  - **Name: i.e.** _i.e. retrieve companies within company's name occurrences_
 
-3.3. Using one raw SQL:<br>
+3.4. Using one raw SQL:<br>
   - get a list of companies where each company has max revenue in its industry: e.g. `Amazon` for `E-icommerce`
 
 Services
