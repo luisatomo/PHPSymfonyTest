@@ -83,16 +83,16 @@ The app entities main structure consist in
 **1.1 _Client entity_**
 <br>Every Client need these fields
 - name
-- User (relational User field)
 - Company (relational Company field)
+- ClientUsers (inverse relationship field)
 - email (only valid emails accepted)
 - phone (only numbers accepted)
     
-**1.2 _ClientUsers entity_**
+**1.2 _ClientUser entity_**
 <br>You need to create this relational entity from scratch. 
 This will relate client with users and contains more properties.
-- client
-- users
+- Client (relational Client field)
+- User (relational User field)
 - createdAt
 - updatedAt
 - deletedAt
@@ -101,7 +101,6 @@ This will relate client with users and contains more properties.
 **1.3 _Company entity_**
 <br>You need to add this fields to the actual entity
 - A related Company
-- An inverse side relationship named `users` for retrieving all the **Users** for the company.
           
 Controllers
 ===========
@@ -148,7 +147,7 @@ You have to use DQL or SQL (2 each)
   - **Name: i.e.** _i.e. retrieve companies within company's name occurrences_
 
 3.4. Using one raw SQL:<br>
-  - get a list of companies where each company has max revenue in its industry: e.g. `Amazon` for `E-icommerce`
+  - get a list of companies where each company has max revenue in its industry: e.g. `Amazon` for `E-commerce`
 
 Services
 ========
@@ -179,7 +178,7 @@ Events
 1. Upon any Client creation, a ClientCreationEvent event should be fired.
 2. An event listener/subscriber must detect that event and send 2 emails:
     - One to the user that created the Client
-    - Another to the Company associated
+    - Another to the associated Company contact email
 
 Use the email service you previously created.
 
