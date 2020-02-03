@@ -137,12 +137,12 @@ Doctrine query language
 You have to use DQL or SQL (2 each)
 ```
 
-3.1. Search for Companies by employees range.<br> 
-  - **Employees range** _i.e. list Companies that has employees range between 500 and 2000_
-    
-3.2. Search for Clients by:<br>
+3.1. Search for Clients by:<br>
   - **User email** _i.e. retrieve all Clients by a  given User email_
-  
+
+3.2. Search for Companies by employees range.<br> 
+  - **Employees range** _i.e. list Companies that has employees range between 500 and 2000_
+
 3.3. Search for Companies by:<br>
   - **Name: i.e.** _i.e. retrieve companies within company's name occurrences_
 
@@ -168,9 +168,11 @@ Security
 **(5) Add security to some endpoints**
 ----------------------------------------------------------------------------------------
 
-Secure the following endpoints: 
-1. The create Client endpoint (2.3) to allow only ROLE_ADMIN users to use it
-2. The change any Client field endpoint (2.4) to allow only ROLE_ADMIN users or an specific user with `username=user3`
+Secure the following endpoints:
+
+5.1. The create Client endpoint (2.3) to allow only ROLE_ADMIN users to use it
+
+5.2. The change any Client field endpoint (2.4) to allow only ROLE_ADMIN users or an specific user with `username=user3`
 
 - Proper usage of Voters is expected to accomplish these tasks.
 
@@ -180,8 +182,9 @@ Events
 **(6) Fire events when a client is created**
 ----------------------------------------------
  
-1. Upon any Client creation, a ClientCreationEvent event should be fired.
-2. An event listener/subscriber must detect that event and send 2 emails:
+6.1. Upon any Client creation, a ClientCreationEvent event should be fired.
+
+6.2. An event listener/subscriber must detect that event and send 2 emails:
     - One to the user that created the Client
     - Another to the associated Company contact email
 
@@ -192,7 +195,7 @@ REGEX
 
 **(7) Add some regex**
 ----------------------
-- add some regex to validate emails on `GET /user/profile` endpoint.
+- Add some regex to validate emails on `GET /user/profile` endpoint.
 
 Commands
 ========
@@ -229,10 +232,13 @@ $ phpunit -c app/
 
 **(9) Assert tests from the list below**
 ----------------------------------------------------------------
-1. There is only 1 company with more than 200000 employees.
-2. A ROLE_USER user can NOT create a User
-3. A Client can be created properly 
-4. Assert that result from (3.3) contains `Amazon` and `Google` and not contains any other company from `E-Commerce` industry
+9.1. There is only 1 company with more than 200000 employees.
+
+9.2. A ROLE_USER user can NOT create a User
+
+9.3. A Client can be created properly 
+
+9.4. Assert that result from (3.3) contains `Amazon` and `Google` and not contains any other company from `E-Commerce` industry
 
 DOCKER
 =====
