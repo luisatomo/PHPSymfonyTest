@@ -119,9 +119,9 @@ Follow the same pattern and use the proper restful methods for every endpoint
 ### 2.1) - List app Users
 The endpoint needs to be able to filter by username.
 
-### 2.2) - Replace some User fields at once
+### 2.2) - Replace all User fields at once
 The endpoint must update all fields at once.
-    
+
 ### 2.3) - Create some Client
 Needs to validate that the company used isn't taken by other Client yet.
 
