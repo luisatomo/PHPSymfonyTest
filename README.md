@@ -165,9 +165,14 @@ This service has to set, so every new user gets added a welcome email is sent.
 Security
 ========
  
-**(5) Secure the Create Client endpoint (2.3) to allow only ROLE_ADMIN users to use it**
+**(5) Add security to some endpoints**
 ----------------------------------------------------------------------------------------
-- The use of Voters is a plus.
+
+Secure the following endpoints: 
+1. The create Client endpoint (2.3) to allow only ROLE_ADMIN users to use it
+2. The change any Client field endpoint (2.4) to allow only ROLE_ADMIN users or an specific user with `username=user3`
+
+- Proper usage of Voters is expected to accomplish these tasks.
 
 Events
 ======
