@@ -226,7 +226,7 @@ The regex to validate the `email` field should at least satisfy the following co
 
 **Example invalid emails that your regex should reject:**
 - foobar
-- foo@bar
+- foo@bar@foo
 - @bar
 - foo@
 - john..doe@example.com
