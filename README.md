@@ -198,7 +198,7 @@ REGEX
 **Use regex to validate emails on `GET /user/profile` endpoint.**
 
 The regex to validate the `email` field should at least satisfy the following constraints:
-1. Must have a valid `local part`, followed by `@` and ending with a valid  `domain`.
+1. Must start with a valid `local part`, followed by only one `@`, and ending with a valid  `domain`.
 2. `local part` must follow the following constraints:
     - Cannot be empty
     - May contain uppercase/lowercase latin letters (A to Z and a to z).
