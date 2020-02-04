@@ -195,7 +195,55 @@ REGEX
 
 **(7) Add some regex**
 ----------------------
-- Add some regex to validate emails on `GET /user/profile` endpoint.
+**Use regex to validate emails on `GET /user/profile` endpoint.**
+
+The regex to validate the `email` field should at least satisfy the following constraints:
+
+1. Must have a valid `local part`, followed by `@` and ending with a valid  `domain`.
+
+2. `local part` must follow the following constraints:
+    - Cannot be empty
+    - May contain uppercase/lowercase latin letters (A to Z and a to z).
+    - May contain Digits from 0 to 9.
+    - May contain a dot (`.`) except at the start or the end of the string, also there cannot be two adjacent dots (`..`).
+    - May contain printable characters from this list: !#$%&'*+-/=?^_`{|}~;.
+    - May contain special characters from this list but only if they're between quotes `"`: "(),:;<>@[\]
+    - May contain a comment enclosed between `()`
+    - A maximum size of 64 characters is allowed.
+
+3. `domain` must follow the at least the following constraints:
+    - Cannot be empty
+    - May contain one or more DNS labels separated by a dot (`.`) and limited to a maximum length of 63 characters.
+    - Each DNS label may contain uppercase/lowercase latin letters (A to Z and a to z).
+    - Each DNS label may contain Digits from 0 to 9.
+    - Each DNS label may contain hyphen (`-`) except at the start or end of the string.
+    - A maximum size of 255 characters is allowed for the entire `domain`.
+
+**Example valid emails that your regex should allow:**
+
+- john.doe@example.com
+- foo_bar2020@foo.bar
+- John&Lynda.Doe@example.net
+- Mrs":"Lynda.Doe@example.org
+- john-doe(FooBar)@example.com
+- foo-bar@localhost
+
+**Example invalid emails that your regex should reject:**
+ 
+- foobar
+- foo@bar
+- @bar
+- foo@
+- john..doe@example.com
+- john&doe@example.org
+- this-local-part-is-too-long-to-be-accepted-by-the-rfc-standard-and-should-not-be-allowed-to-be-entered-on-an-email@example.com
+- john.doe@example.com&example.net
+- john.doe@invalid.
+- john.doe@.domain
+
+_You can see the RFC definitions of what is a valid email here_:
+- https://tools.ietf.org/html/rfc5321#section-4.5.3.1.1
+- https://en.wikipedia.org/wiki/Email_address#Syntax
 
 Commands
 ========
