@@ -168,13 +168,13 @@ Security
 **(5) Add security to some endpoints**
 ----------------------------------------------------------------------------------------
 
-Secure the following endpoints:
+**Steps**:
 
-5.1. The create Client endpoint (2.3) to allow only ROLE_ADMIN users to use it
+5.1. Secure the "Create Client" endpoint (2.3) to allow access to users with ROLE_ADMIN only
 
-5.2. The change any Client field endpoint (2.4) to allow only ROLE_ADMIN users or an specific user with `username=user3`
+5.2. Secure the "Change any Client field" endpoint (2.4) to allow access to user with `username=user3` only
 
-- Proper usage of Voters is expected to accomplish these tasks.
+- _At least one endpoint needs to be secured using Voters._
 
 Events
 ======
