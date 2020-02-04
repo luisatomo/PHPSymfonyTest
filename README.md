@@ -197,7 +197,7 @@ REGEX
 ----------------------
 **Use regex to validate emails on `GET /user/profile` endpoint.**
 
-The regex to validate the `email` field should at least satisfy the following constraints:
+The regex should satisfy the following conditions (real RFC email has more, this is an example):
 1. Must start with a valid `local part`, followed by only one `@`, and ending with a valid  `domain`.
 2. `local part` must follow the following constraints:
     - Cannot be empty
@@ -235,10 +235,6 @@ The regex to validate the `email` field should at least satisfy the following co
 - john.doe@example.com&example.net
 - john.doe@invalid.
 - john.doe@.domain
-
-_You can see the RFC definitions of what is a valid email here_:
-- https://tools.ietf.org/html/rfc5321#section-4.5.3.1.1
-- https://en.wikipedia.org/wiki/Email_address#Syntax
 
 Commands
 ========
