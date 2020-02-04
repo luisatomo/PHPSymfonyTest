@@ -284,7 +284,7 @@ DOCKER
 
 **(10) Improve docker implementation**
 ----------------------
-- Currently, in our `docker-compose.yml` commands are executed without checking is Postgres service available.
+- Currently, in our `docker-compose.yml` commands are executed without checking if Postgres service available.
 Using [wait-for-it](https://github.com/vishnubob/wait-for-it) bash script run commands only if the Postgres service is accessible. 
 
 Documenting
