@@ -204,9 +204,7 @@ The regex should satisfy the following conditions (actual email address RFC has 
     - May contain uppercase/lowercase latin letters (A to Z and a to z).
     - May contain Digits from 0 to 9.
     - May contain a dot (`.`) except at the start or the end of the string, also there cannot be two adjacent dots (`..`).
-    - May contain printable characters from this list: !#$%&'*+-/=?^_`{|}~;.
-    - May contain special characters from this list but only if they're between quotes `"`: "(),:;<>@[\]
-    - May contain a comment enclosed between `()`
+    - May contain printable characters from this list: `#$&`.
     - A maximum size of 64 characters is allowed.
 3. `domain` must follow the at least the following constraints:
     - Cannot be empty
@@ -218,11 +216,9 @@ The regex should satisfy the following conditions (actual email address RFC has 
 
 **Example valid emails that your regex should allow:**
 - john.doe@example.com
-- foo_bar2020@foo.bar
+- foobar2020@example.org
 - John&Lynda.Doe@example.net
-- Mrs":"Lynda.Doe@example.org
-- john-doe(FooBar)@example.com
-- foo-bar@localhost
+- foo$bar@foo-bar.com
 
 **Example invalid emails that your regex should reject:**
 - foobar
@@ -230,11 +226,12 @@ The regex should satisfy the following conditions (actual email address RFC has 
 - @bar
 - foo@
 - john..doe@example.com
-- john&doe@example.org
 - this-local-part-is-too-long-to-be-accepted-by-the-rfc-standard-and-should-not-be-allowed-to-be-entered-on-an-email@example.com
 - john.doe@example.com&example.net
 - john.doe@invalid.
 - john.doe@.domain
+- foo.bar@-invalid.domain
+- foo.bar@invalid.domain-
 
 Commands
 ========
@@ -278,6 +275,9 @@ $ phpunit -c app/
 9.3. A Client can be created properly 
 
 9.4. Assert that result from (3.3) contains `Amazon` and `Google` and not contains any other company from `E-Commerce` industry
+
+9.5 Add a Unit test so you can assert all email cases from task (7).
+All valid email cases must succeed on your delivered regex, as well as all the invalid ones must fail.
 
 DOCKER
 =====
