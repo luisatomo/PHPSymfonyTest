@@ -204,7 +204,7 @@ The regex should satisfy the following conditions (actual email address RFC has 
     - May contain uppercase/lowercase latin letters (A to Z and a to z).
     - May contain Digits from 0 to 9.
     - May contain a dot (`.`) except at the start or the end of the string, also there cannot be two adjacent dots (`..`).
-    - May contain printable characters from this list: `#$&`.
+    - May contain printable characters from this list: `_-&`.
     - A maximum size of 64 characters is allowed.
 3. `domain` must follow the at least the following constraints:
     - Cannot be empty
@@ -217,8 +217,9 @@ The regex should satisfy the following conditions (actual email address RFC has 
 **Example valid emails that your regex should allow:**
 - john.doe@example.com
 - foobar2020@example.org
-- John&Lynda.Doe@example.net
-- foo$bar@foo-bar.com
+- John&Lynda_Doe@example.net
+- john-doe@example.com
+- foo_bar@foo-bar.com
 
 **Example invalid emails that your regex should reject:**
 - foobar
