@@ -135,9 +135,9 @@ Follow the same pattern and use the proper restful methods for every endpoint
 ### 2.1) - List app Users
 The endpoint needs to be able to filter by username.
 
-### 2.2) - Replace some User fields at once
+### 2.2) - Replace all User fields at once
 The endpoint must update all fields at once.
-    
+
 ### 2.3) - Create some Client
 Needs to validate that the company used isn't taken by other Client yet.
 
@@ -153,12 +153,12 @@ Doctrine query language
 You have to use DQL or SQL (2 each)
 ```
 
-3.1. Search for Companies by employees range.<br> 
-  - **Employees range** _i.e. list Companies that has employees range between 500 and 2000_
-    
-3.2. Search for Clients by:<br>
+3.1. Search for Clients by:<br>
   - **User email** _i.e. retrieve all Clients by a  given User email_
-  
+
+3.2. Search for Companies by employees range.<br> 
+  - **Employees range** _i.e. list Companies that has employees range between 500 and 2000_
+
 3.3. Search for Companies by:<br>
   - **Name: i.e.** _i.e. retrieve companies within company's name occurrences_
 
@@ -181,9 +181,16 @@ This service has to set, so every new user gets added a welcome email is sent.
 Security
 ========
  
-**(5) Secure the Create Client endpoint (2.3) to allow only ROLE_ADMIN users to use it**
+**(5) Add security to some endpoints**
 ----------------------------------------------------------------------------------------
-- The use of Voters is a plus.
+
+**Steps**:
+
+5.1. Secure the "Create Client" endpoint (2.3) to allow access to users with ROLE_ADMIN only
+
+5.2. Secure the "Change any Client field" endpoint (2.4) to allow access to user with `username=user3` only
+
+- _At least one endpoint needs to be secured using Voters._
 
 Events
 ======
@@ -191,8 +198,9 @@ Events
 **(6) Fire events when a client is created**
 ----------------------------------------------
  
-1. Upon any Client creation, a ClientCreationEvent event should be fired.
-2. An event listener/subscriber must detect that event and send 2 emails:
+6.1. Upon any Client creation, a ClientCreationEvent event should be fired.
+
+6.2. An event listener/subscriber must detect that event and send 2 emails:
     - One to the user that created the Client
     - Another to the associated Company contact email
 
@@ -203,7 +211,44 @@ REGEX
 
 **(7) Add some regex**
 ----------------------
-- add some regex to validate emails on `GET /user/profile` endpoint.
+**Use regex to validate emails on `GET /user/profile` endpoint.**
+
+The regex should satisfy the following conditions (actual email address RFC has more, this is an example):
+1. Must start with a valid `local part`, followed by only one `@`, and ending with a valid  `domain`.
+2. `local part` must follow the following constraints:
+    - Cannot be empty
+    - May contain uppercase/lowercase latin letters (A to Z and a to z).
+    - May contain Digits from 0 to 9.
+    - May contain a dot (`.`) except at the start or the end of the string, also there cannot be two adjacent dots (`..`).
+    - May contain printable characters from this list: `_-&`.
+    - A maximum size of 64 characters is allowed.
+3. `domain` must follow the at least the following constraints:
+    - Cannot be empty
+    - May contain one or more DNS labels separated by a dot (`.`) and limited to a maximum length of 63 characters.
+    - Each DNS label may contain uppercase/lowercase latin letters (A to Z and a to z).
+    - Each DNS label may contain Digits from 0 to 9.
+    - Each DNS label may contain hyphen (`-`) except at the start or end of the string.
+    - A maximum size of 255 characters is allowed for the entire `domain`.
+
+**Example valid emails that your regex should allow:**
+- john.doe@example.com
+- foobar2020@example.org
+- John&Lynda_Doe@example.net
+- john-doe@example.com
+- foo_bar@foo-bar.com
+
+**Example invalid emails that your regex should reject:**
+- foobar
+- foo@bar@foo
+- @bar
+- foo@
+- john..doe@example.com
+- this-local-part-is-too-long-to-be-accepted-by-the-rfc-standard-and-should-not-be-allowed-to-be-entered-on-an-email@example.com
+- john.doe@example.com&example.net
+- john.doe@invalid.
+- john.doe@.domain
+- foo.bar@-invalid.domain
+- foo.bar@invalid.domain-
 
 Commands
 ========
@@ -240,17 +285,23 @@ $ phpunit -c app/
 
 **(9) Assert tests from the list below**
 ----------------------------------------------------------------
-1. There is only 1 company with more than 200000 employees.
-2. A ROLE_USER user can NOT create a User
-3. A Client can be created properly 
-4. Assert that result from (3.3) contains `Amazon` and `Google` and not contains any other company from `E-Commerce` industry
+9.1. There is only 1 company with more than 200000 employees.
+
+9.2. A ROLE_USER user can NOT create a User
+
+9.3. A Client can be created properly 
+
+9.4. Assert that result from (3.3) contains `Amazon` and `Google` and not contains any other company from `E-Commerce` industry
+
+9.5 Add a Unit test so you can assert all email cases from task (7).
+All valid email cases must succeed on your delivered regex, as well as all the invalid ones must fail.
 
 DOCKER
 =====
 
 **(10) Improve docker implementation**
 ----------------------
-- Currently, in our `docker-compose.yml` commands are executed without checking is Postgres service available.
+- Currently, in our `docker-compose.yml` commands are executed without checking if Postgres service available.
 Using [wait-for-it](https://github.com/vishnubob/wait-for-it) bash script run commands only if the Postgres service is accessible. 
 
 Third Party API integration
