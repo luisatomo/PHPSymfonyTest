@@ -18,7 +18,7 @@ among others.
 
 - Following PHP and Symfony best practices
 - Following RESTFul conventions
-- coding clean and organized 
+- Coding clean and organized 
 
 For this test we have pre-installed in the repo a set of most useful and popular FOS bundles:
 
@@ -56,6 +56,22 @@ to get all the test tasks done.
 Project contains Docker configuration so you can easily run API.
 Simply run `docker-compose up` and you are done.
 Nginx will be available on `localhost:80` and PostgreSQL on `localhost:5432`. 
+
+We already have setup a FOSOAuthServerBundle client so you can authenticate and request our API endpoints.
+To get an access token you can execute the following command using CURL (using the default OAuth v2 Token endpoint):
+```
+curl --location --request POST 'http://localhost/oauth/v2/token' \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --data-urlencode 'grant_type=password' \
+    --data-urlencode 'client_id=4_5rll3ugxh3gosko88sskskooo0ws8kggkgo4kkckgwgw0c8kco' \
+    --data-urlencode 'client_secret=439yxyh5maww48cosw0gwwo4gow0w4s4g4oosog4sww40os08c' \
+    --data-urlencode 'username=admin1' \
+    --data-urlencode 'password=admin1'
+```
+
+When making a request to an API endpoint remember to append the following header using the `access_token` you got from that command:
+
+`Authorization: Bearer "access_token"`
 
 How to deliver your work?
 =========================
@@ -237,6 +253,45 @@ DOCKER
 - Currently, in our `docker-compose.yml` commands are executed without checking is Postgres service available.
 Using [wait-for-it](https://github.com/vishnubob/wait-for-it) bash script run commands only if the Postgres service is accessible. 
 
+Third Party API integration
+===========================
+
+We rely on third party APIs to get social network accounts details and link those details to our database users.
+
+**(11) Retrieve Twitter followers count for an existing User**
+----------------------------------------
+This implementation requirements are not production ready and are just used to illustrate a Twitter API use case.
+What we intend to know is if you are able to call a third party API to get some data and link it to our existing model. 
+
+To get a Twitter Bearer Token use these sandbox app client credentials:
+
+https://developer.twitter.com/en/docs/basics/authentication/api-reference/token
+* API Key: i3nk7FhqCVgkddGuUTOkeHhw2
+* API Secret Key: cRVrKVIeWZwKQbxCmN1DXjFUefoEfKp0eqwVGov8E82tmhJQPm
+
+**Note**
+You will need to call Twitter API endpoint to get an User object using Twitter `screen_name` field.
+See: https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/user-object
+
+You can use GuzzleHTTP or ext-curl to make Twitter API HTTP Requests.
+
+**Steps**
+
+1. Add a new field to the User entity: `twitter_followers_count`.
+
+2. Update src/AppBundle/DataFixtures/ORM/002-user.yml and add an User with `email` equal to `sample@bcv.social`
+and `username` equal to `bcvsocial` (this corresponds to a real Twitter `screen_name`).
+
+3. On endpoint `/users/profile?email=sample@bcv.social` you should call Twitter API to retrieve the `followers_count`
+for the Twitter User with the same `screen_name` you just created, then store Twitter API `followers_count` response
+on `twitter_followers_count`.
+
+**Definition of done**
+
+After your code is done, you'll need to create a test that makes the request to the Social Network,
+and then assert the value is properly stored on User entity.
+
+
 Documenting
 ===========
 
@@ -246,6 +301,6 @@ Writing meaningful and easy to understand docs is another skill of every great d
 You have currently installed **NelmioApiDocBundle** for that matter so you can start 
 using the ApiDocs right now. 
 
-**(11) Show us your documenting skills.**
+**(12) Show us your documenting skills**
 ----------------------------------------
 Writing some docs on all the endpoints you have created. 
