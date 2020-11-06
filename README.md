@@ -79,10 +79,12 @@ How to deliver your work?
 This is important as this will show us how you work with GIT.
 
 You need to follow this approach:
-1. Create a new branch with your name 
-2. Push your code to your branch name
-3. Commit every single tasks separately  
+1. Fork this repository
+2. Create a new branch and push your work there
+3. Commit every single tasks separately
 4. When finished, you'll need to create a pull request 
+5. Make sure your repo forked is public and send us your PR link
+6. Done 💪
 
 Entities
 ========
