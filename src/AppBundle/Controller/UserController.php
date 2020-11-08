@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\AppBundle;
 use AppBundle\Entity\User;
 use AppBundle\Manager\UserManager;
+use Faker\Test\Provider\Collection;
 use FOS\RestBundle\Request\ParamFetcher;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -123,5 +124,53 @@ class UserController extends FOSRestController
     public function putAction(ParamFetcher $paramFetcher)
     {
         return new User();
+    }
+
+    /**
+     * Get App Users list
+     *
+     * ### Response ###
+     *  <code>
+     *       "users": [{
+     *         "id": ##,
+     *         "email": string,
+     *         "username": string,
+     *         "firstname": string,
+     *         "lastname": string,
+     *       }]
+     * </code>
+     *
+     * @ApiDoc(
+     *     section = "User",
+     *     description="Get list of app users filtered by username.",
+     *     statusCodes={200 = "OK", 400 = "Bad request"},
+     *     resource=true
+     * )
+     *
+     * @FOS\QueryParam(name="username", requirements=".+", strict=false, nullable=true, allowBlank=true)
+     *
+     * @FOS\Route("/users/list", methods={"GET"}, name="app_users_get")
+     *
+     * @FOS\View(serializerGroups={})
+     *
+     */
+
+    public function listAppUsersAction(ParamFetcher  $paramFetcher)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $username = $paramFetcher->get('username');
+
+        if($username) {
+            $users = $em->getRepository(User::class)
+                ->findByUsername($username);
+        }
+        else {
+            $users = $users = $em->getRepository(User::class)
+                ->findAll();
+        }
+
+        return $users;
+
     }
 }

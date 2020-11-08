@@ -56,7 +56,7 @@ class Company
     protected $contactEmail;
 
     /**
-     * @ManyToOne(targetEntity="Company::class")
+     * @ORM\ManyToOne(targetEntity="Company::class")
      */
     protected $parentCompany;
 

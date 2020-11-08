@@ -37,7 +37,7 @@ class ClientUser
     protected $client;
 
     /**
-     * @OneToOne(targetEntity="User")
+     * @ORM\OneToOne(targetEntity="User")
      */
     private $user;
 
