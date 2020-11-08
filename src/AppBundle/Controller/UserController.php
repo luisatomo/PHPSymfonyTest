@@ -7,6 +7,7 @@ use AppBundle\Entity\User;
 use AppBundle\Manager\UserManager;
 use Faker\Test\Provider\Collection;
 use FOS\RestBundle\Request\ParamFetcher;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use JMS\DiExtraBundle\Annotation\Inject;
@@ -100,11 +101,10 @@ class UserController extends FOSRestController
      * ### Response ###
      *  <code>
      *       "user": {
-     *         "id": ##,
      *         "email": string,
      *         "username": string,
-     *         "firstname": string,
-     *         "lastname": string,
+     *         "firstName": string,
+     *         "lastName": string,
      *       }
      * </code>
      *
@@ -115,15 +115,30 @@ class UserController extends FOSRestController
      *     resource=true
      * )
      *
-     * @FOS\Route("/{id}", requirements={"id"="\d+"}, methods={"PUT"}, name="update_put")
+     * @FOS\Route("/user/update/{id}", requirements={"id"="\d+"}, methods={"PUT"}, name="update_put")
+     * @ParamConverter("user", converter="fos_rest.request_body")
      *
      * @FOS\View(serializerGroups={"Users"})
      *
+     * @param $id
+     * @param User $entity
      * @return User
      */
-    public function putAction(ParamFetcher $paramFetcher)
+    public function putAction($id, User $user)
     {
-        return new User();
+        $em = $this->getDoctrine()->getManager();
+        $userRepo = $em->getRepository(User::class)
+            ->findOneBy(['id' => $id]);
+        if($user && $userRepo){
+            $userRepo->setFirstName($user->getFirstName());
+            $userRepo->setLastName($user->getLastName());
+            $userRepo->setUsername($user->getUsername());
+            $userRepo->setEmail($user->getEmail());
+            $em->persist($userRepo);
+            $em->flush();
+        }
+
+        return $userRepo;
     }
 
     /**
