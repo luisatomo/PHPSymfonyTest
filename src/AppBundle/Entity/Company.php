@@ -1,6 +1,5 @@
 <?php
 
-
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -55,4 +54,145 @@ class Company
      * @ORM\Column(type="text")
      */
     protected $contactEmail;
+
+    /**
+     * @ManyToOne(targetEntity="Company::class")
+     */
+    protected $parentCompany;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIndustry()
+    {
+        return $this->industry;
+    }
+
+    /**
+     * @param mixed $industry
+     */
+    public function setIndustry($industry)
+    {
+        $this->industry = $industry;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRevenueBillion()
+    {
+        return $this->revenueBillion;
+    }
+
+    /**
+     * @param mixed $revenueBillion
+     */
+    public function setRevenueBillion($revenueBillion)
+    {
+        $this->revenueBillion = $revenueBillion;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMarketCapitalBillion()
+    {
+        return $this->marketCapitalBillion;
+    }
+
+    /**
+     * @param mixed $marketCapitalBillion
+     */
+    public function setMarketCapitalBillion($marketCapitalBillion)
+    {
+        $this->marketCapitalBillion = $marketCapitalBillion;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmployees()
+    {
+        return $this->employees;
+    }
+
+    /**
+     * @param mixed $employees
+     */
+    public function setEmployees($employees)
+    {
+        $this->employees = $employees;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHeadquarters()
+    {
+        return $this->headquarters;
+    }
+
+    /**
+     * @param mixed $headquarters
+     */
+    public function setHeadquarters($headquarters)
+    {
+        $this->headquarters = $headquarters;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getContactEmail()
+    {
+        return $this->contactEmail;
+    }
+
+    /**
+     * @param mixed $contactEmail
+     */
+    public function setContactEmail($contactEmail)
+    {
+        $this->contactEmail = $contactEmail;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getParentCompany()
+    {
+        return $this->parentCompany;
+    }
+
+    /**
+     * @param mixed $parentCompany
+     */
+    public function setParentCompany($parentCompany)
+    {
+        $this->parentCompany = $parentCompany;
+    }
 }

@@ -21,7 +21,7 @@ services:
     volumes:
       - .:/var/www/html
     command: |
-      /bin/bash -c "./wait-for-it.sh db:5432 
+      /bin/bash -c "./wait-for-it.sh db:5432
         composer install  --prefer-dist --no-interaction
         php app/console doctrine:schema:update --force
         php app/console doctrine:fixtures:load -n
