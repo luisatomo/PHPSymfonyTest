@@ -95,6 +95,12 @@ class ClientController extends FOSRestController
      */
     public function newAction(Client $client)
     {
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return new JsonResponse([
+                'message' => 'Please authenticate with the correct Role',
+                'status' => 400
+            ], 400);
+        }
         $em = $this->getDoctrine()->getManager();
         $company = $em->getRepository(Company::class)->findOneBy(['id' => $client->getCompany()->getId()]);
         $client->setCompany($company);
