@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\AppBundle;
 use AppBundle\Entity\User;
 use AppBundle\Manager\UserManager;
+use AppBundle\Service\Mailer;
 use Faker\Test\Provider\Collection;
 use FOS\RestBundle\Request\ParamFetcher;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -124,7 +125,7 @@ class UserController extends FOSRestController
      * @param User $entity
      * @return User
      */
-    public function putAction($id, User $user)
+    public function putAction($id, User $user, Mailer $mailer)
     {
         $em = $this->getDoctrine()->getManager();
         $userRepo = $em->getRepository(User::class)
@@ -134,6 +135,7 @@ class UserController extends FOSRestController
             $userRepo->setLastName($user->getLastName());
             $userRepo->setUsername($user->getUsername());
             $userRepo->setEmail($user->getEmail());
+            $mailer->sendEmail('luis@atomoweb.com', 'User updated', 'testing');
             $em->persist($userRepo);
             $em->flush();
         }

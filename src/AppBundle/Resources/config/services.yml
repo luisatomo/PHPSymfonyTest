@@ -1,0 +1,4 @@
+services:
+  AppBundle\Service\Mailer:
+    arguments: [ "@swiftmailer.mailer", "@templating" ]
+    public: true
