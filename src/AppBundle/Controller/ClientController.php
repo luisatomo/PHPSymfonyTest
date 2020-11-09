@@ -103,4 +103,42 @@ class ClientController extends FOSRestController
 
         return $client;
     }
+
+    /**
+     * Find Clients by User Email
+     *
+     * ### Response ###
+     *  <code>
+     *       "clients": [{
+     *         "name": string,
+     *         "email": string,
+     *         "phone": string,
+     *         "company": integer,
+     *       }]
+     * </code>
+     *
+     * @ApiDoc(
+     *     section = "Client",
+     *     description="Find By Email",
+     *     statusCodes={200 = "OK", 400 = "Bad request"},
+     *     resource=true
+     * )
+     *
+     * @FOS\QueryParam(name="email", requirements=".+", strict=false, nullable=true, allowBlank=true)
+     * @FOS\Route("/find-by-email", methods={"GET"}, name="find_by_email")
+     *
+     * @FOS\View(serializerEnableMaxDepthChecks=true, serializerGroups={})
+     * @param ParamFetcher $paramFetcher
+     * @return clients[]
+     */
+    public function findByEmailAction(ParamFetcher $paramFetcher)
+    {
+        $email = $paramFetcher->get('email');
+        $em = $this->getDoctrine()->getManager();
+        $clients = $em->getRepository(Client::class)->findByUserEmail($email);
+
+        return $clients;
+    }
+
+
 }
