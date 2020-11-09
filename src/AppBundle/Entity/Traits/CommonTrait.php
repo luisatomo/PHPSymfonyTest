@@ -23,7 +23,7 @@ trait CommonTrait
 
     /**
      *
-     * @ORM\Column(type="deletedAt")
+     * @ORM\Column(type="datetime")
      */
     protected $deletedAt;
 

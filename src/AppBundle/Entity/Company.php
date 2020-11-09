@@ -1,5 +1,6 @@
 <?php
 
+
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -56,7 +57,7 @@ class Company
     protected $contactEmail;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Company::class")
+     * @ORM\ManyToOne(targetEntity="Company")
      */
     protected $parentCompany;
 

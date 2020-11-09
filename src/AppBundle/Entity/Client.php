@@ -143,7 +143,7 @@ class Client
     /**
      * @param mixed $company
      */
-    public function setCompany($company)
+    public function setCompany(Company $company)
     {
         $this->company = $company;
     }

@@ -2,6 +2,10 @@ app_api_user:
     resource: "@AppBundle/Controller/UserController.php"
     type: rest
 
+app_api_client:
+    resource: "@AppBundle/Controller/ClientController.php"
+    type: rest
+
 fos_oauth_server_token:
     resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
 
