@@ -6,6 +6,10 @@ app_api_client:
     resource: "@AppBundle/Controller/ClientController.php"
     type: rest
 
+app_api_company:
+    resource: "@AppBundle/Controller/CompanyController.php"
+    type: rest
+
 fos_oauth_server_token:
     resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
 
